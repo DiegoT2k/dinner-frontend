@@ -134,22 +134,33 @@ function AdminPage() {
       <div className="card">
         <h2>Cene Esistenti</h2>
 
-        <ul className="dinner-list">
-          {dinners.map((d) => (
-            <li key={d.id} className="dinner-item">
-              <div className="dinner-name">{d.name}</div>
-              <div className="dinner-date">{d.date}</div>
+        <div className="admin-dinner-list">
+          {dinners.map((d) => {
+            const dateObj = new Date(d.date);
+            const formattedDate = dateObj.toLocaleDateString("it-IT");
+            const formattedTime = dateObj.toLocaleTimeString("it-IT", {
+              hour: "2-digit",
+              minute: "2-digit"
+            });
 
-              <button className="edit-button" onClick={() => startEditing(d)}>
-                ✏️
-              </button>
+            return (
+              <div key={d.id} className="admin-dinner-card">
+                <div className="admin-dinner-info">
+                  <h3>{d.name}</h3>
+                  <p>📅 {formattedDate}</p>
+                  <p>⏰ {formattedTime}</p>
+                </div>
 
-              <button className="delete-button" onClick={() => deleteDinner(d.id)}>
-                🗑️
-              </button>
-            </li>
-          ))}
-        </ul>
+                <div className="admin-dinner-actions">
+                  <button onClick={() => startEditing(d)}>✏️ Modifica</button>
+                  <button className="danger" onClick={() => deleteDinner(d.id)}>🗑️ Elimina</button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+
       </div>
 
     </div>

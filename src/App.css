@@ -202,37 +202,6 @@ body {
 }
 
 /* ===========================
-   BOTTONI LISTA CENE
-=========================== */
-.edit-button {
-  background: #4caf50;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.edit-button:hover {
-  background: #3e8e41;
-}
-
-.delete-button {
-  background: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.delete-button:hover {
-  background: #d93636;
-}
-
-/* ===========================
    TOP BAR
 =========================== */
 .top-bar {
@@ -254,4 +223,102 @@ body {
 
 .admin-button:hover {
   background: #6a4f4b;
+}
+
+/* ===========================
+   ADMIN — LISTA CENE (NUOVO)
+=========================== */
+
+.admin-dinner-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-dinner-card {
+  background: #fff7f0;
+  border-radius: 15px;
+  padding: 18px;
+  border: 3px solid #e6b89c;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-dinner-info h3 {
+  margin: 0 0 6px;
+  color: #5a3d31;
+}
+
+.admin-dinner-info p {
+  margin: 0;
+  color: #7a5f55;
+  font-size: 15px;
+}
+
+.admin-dinner-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-dinner-actions button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.admin-dinner-actions button:hover {
+  transform: translateY(-2px);
+}
+
+.admin-dinner-actions .danger {
+  background: #ff4d4d;
+  color: white;
+}
+
+/* ===========================
+   RESPONSIVE MOBILE
+=========================== */
+
+@media (max-width: 600px) {
+  .container {
+    margin: 20px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .year-title {
+    font-size: 28px;
+    padding: 12px;
+  }
+
+  .month-title {
+    font-size: 20px;
+  }
+
+  .dinner-card {
+    padding: 16px;
+  }
+
+  .admin-dinner-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-dinner-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .admin-dinner-actions button {
+    flex: 1;
+  }
 }
