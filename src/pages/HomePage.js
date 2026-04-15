@@ -19,7 +19,11 @@ const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   }, []);
 
 const formatDate = (iso) => {
-  const d = new Date(iso);
+  // "2025-01-10T20:00:00" → "2025-01-10"
+  const [datePart] = iso.split("T");
+  const [year, month, day] = datePart.split("-");
+
+  const d = new Date(year, month - 1, day);
   return d.toLocaleDateString("it-IT", {
     weekday: "long",
     day: "2-digit",
@@ -29,12 +33,12 @@ const formatDate = (iso) => {
 };
 
 const formatTime = (iso) => {
-  const d = new Date(iso);
-  return d.toLocaleTimeString("it-IT", {
-    hour: "2-digit",
-    minute: "2-digit"
-  });
+  // "2025-01-10T20:00:00" → "20:00"
+  const [, timePart] = iso.split("T");
+  const [hour, minute] = timePart.split(":");
+  return `${hour}:${minute}`;
 };
+
 
 
 const groupByYearMonth = (list) => {
@@ -86,7 +90,7 @@ const groupByYearMonth = (list) => {
 
                     <ul className="dinner-list">
                       {grouped[year][month].map((d) => {
-                        const dateObj = new Date(`${d.date}`);
+
 
                         return (
                           <li key={d.id} className="dinner-card">
@@ -94,8 +98,9 @@ const groupByYearMonth = (list) => {
 
                             <div className="dinner-card-divider"></div>
 
-                            <div className="dinner-card-date">📅 {formatDate(d.date)}</div>
-                            <div className="dinner-card-time">⏰ {formatTime(d.date)}</div>
+<div className="dinner-card-date">📅 {formatDate(d.date)}</div>
+<div className="dinner-card-time">⏰ {formatTime(d.date)}</div>
+
 
                           </li>
                         );
