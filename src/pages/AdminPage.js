@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
+import { API_URL } from "../config";
 
 function AdminPage() {
   const [dinners, setDinners] = useState([]);
@@ -12,7 +13,7 @@ function AdminPage() {
   const [editingId, setEditingId] = useState(null);
 
   const loadDinners = async () => {
-    const res = await fetch("http://localhost:8080/dinner/admin/all");
+    const res = await fetch(`${API_URL}/dinner/admin/all`);
     const data = await res.json();
     setDinners(data);
   };
@@ -35,13 +36,13 @@ function AdminPage() {
     const body = { name, date: isoDateTime };
 
     if (editingId === null) {
-      await fetch("http://localhost:8080/dinner/admin/createDinner", {
+      await fetch(`${API_URL}/dinner/admin/createDinner`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
     } else {
-      await fetch(`http://localhost:8080/dinner/admin/update/${editingId}`, {
+      await fetch(`{API_URL}/dinner/admin/update/${editingId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
@@ -53,7 +54,7 @@ function AdminPage() {
   };
 
   const deleteDinner = async (id) => {
-    await fetch(`http://localhost:8080/dinner/admin/delete/${id}`, {
+    await fetch(`${API_URL}/dinner/admin/delete/${id}`, {
       method: "DELETE"
     });
     loadDinners();

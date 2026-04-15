@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
+import { API_URL } from "../config";
 
 function DinnersByName() {
   const [dinners, setDinners] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/dinner/admin/all")
+    fetch(`${API_URL}/dinner/admin/all`)
       .then((res) => res.json())
       .then((data) => setDinners(data));
   }, []);

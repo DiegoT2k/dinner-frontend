@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
+import { API_URL } from "../config";
 
 function HomePage() {
   const [dinners, setDinners] = useState([]);
 
   const loadDinners = async () => {
-    const res = await fetch("http://localhost:8080/dinner/all");
+    const res = await fetch(`${API_URL}/dinner/all`);
     const data = await res.json();
     setDinners(data);
   };
