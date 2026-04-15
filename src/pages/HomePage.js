@@ -18,18 +18,6 @@ const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
     loadDinners();
   }, []);
 
-  const formatDateTime = (iso) => {
-    const d = new Date(iso);
-    return d.toLocaleString("it-IT", {
-      weekday: "long",
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    });
-  };
-
 const groupByYearMonth = (list) => {
   const groups = {};
 
