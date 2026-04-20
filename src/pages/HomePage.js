@@ -184,7 +184,7 @@ try {
               <div className="coming-extra">
                 <p>👥 Presenti:</p>
                 {nextAttendance.map((a) => (
-                  <p key={a.id}>✔ {a.user.name} {a.user.surname}</p>
+                  <p key={a.id}>✔ {a.userName} {a.userSurname}</p>
                 ))}
               </div>
             )}
